@@ -1,0 +1,235 @@
+/* ===== CSS THEME VARIABLES ===== */
+/* These variables define colors for ENTIRE page
+   They can be switched by theme.js without rewriting all CSS
+   Variables use --name syntax and are referenced with var(--name) */
+
+/* Define default (dark) theme colors
+   :root targets the <html> element, making variables available everywhere */
+:root {
+    /* Background colors */
+    --bg-primary: #0a0a0a;          /* Main page background */
+    --bg-secondary: #000000;        /* Secondary background */
+    
+    /* Text colors */
+    --text-primary: #ffffff;        /* Main text color */
+    --text-secondary: #cccccc;      /* Secondary text */
+    
+    /* Component colors */
+    --border-color: #333333;        /* Borders and dividers */
+    --card-bg: #121212;             /* Product card background */
+    --card-shadow: rgba(0,0,0,0.6); /* Shadow under cards */
+    
+    /* Accent color (stays same in both themes) */
+    --accent-color: #1c69d4;        /* BMW blue */
+}
+
+/* ===== GLOBAL STYLES ===== */
+/* These styles apply to EVERYTHING on the page */
+
+* {
+    /* box-sizing controls how width/padding are calculated
+       border-box: width includes padding, so a 320px box stays 320px even with padding
+       (Without this, padding would ADD to the width, making boxes bigger than expected) */
+    box-sizing: border-box;
+    
+    /* Font family for all text on the page
+       "Segoe UI" is preferred, but if not available, use any sans-serif font
+       sans-serif fonts are clean and modern (no decorative lines) */
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* ===== BODY STYLING ===== */
+/* The <body> tag wraps everything on the page */
+
+body {
+    margin: 0;  /* Remove default browser margins so nothing is pushed in from edges */
+    
+    /* Use CSS variable instead of hardcoded color
+       This way, when theme.js changes --bg-primary, body background updates automatically */
+    background: var(--bg-primary);
+    
+    /* Change text color based on theme */
+    color: var(--text-primary);
+    
+    /* Add smooth transition when theme changes (optional, nice visual effect) */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ===== HEADER / HERO SECTIONS ===== */
+/* .hero is the main page header, .sub-hero is used on product detail pages */
+
+.hero, .sub-hero {
+    text-align: center;  /* Center all text inside */
+    padding: 80px 20px;  /* Add 80px top/bottom space, 20px left/right space */
+}
+
+/* Make the main title BIG */
+.hero h1 {
+    font-size: 48px;  /* Very large text */
+}
+
+/* Product page titles slightly smaller */
+.sub-hero h1 {
+    font-size: 42px;
+}
+
+/* ===== PRODUCT CARDS CONTAINER ===== */
+.cards {
+    display: flex;  
+    /* flex = flexible layout system that arranges items in rows
+       flexbox is perfect for arranging cards in rows that wrap to new lines */
+    
+    gap: 30px;  /* Space between each card is 30px */
+    justify-content: center;  /* Center the cards horizontally */
+    padding: 40px;  /* Add 40px space around the entire container */
+    flex-wrap: wrap;  /* If cards don't fit in one row, wrap to next line (responsive!) */
+}
+
+/* ===== INDIVIDUAL PRODUCT CARD ===== */
+.card {
+    /* Use variable for card background - changes with theme */
+    background: var(--card-bg);
+    border-radius: 16px;  /* Round the corners (makes it look modern) */
+    width: 320px;  /* Each card is 320px wide */
+    padding: 20px;  /* Space inside the card around the content */
+    
+    /* Use variable for shadow - different for each theme */
+    box-shadow: 0 0 25px var(--card-shadow);
+    
+    position: relative;  /* Allows badge to be positioned absolutely inside */
+}
+
+/* Image inside card takes full width and has rounded corners */
+.card img {
+    width: 100%;  /* Stretch to fill card width */
+    border-radius: 12px;  /* Round the image corners */
+}
+
+/* ===== HIDE CARDS DURING FILTERING ===== */
+/* When filter.js adds .hidden class, this makes the card disappear */
+.card.hidden {
+    display: none;  /* None = completely remove from view (doesn't take up space) */
+}
+
+/* ===== FEATURED CARD ===== */
+/* Highlight one special card (e.g., the "most popular" one) */
+.featured {
+    /* Use variable for border - changes with theme */
+    border: 2px solid var(--accent-color);  /* Blue border to make it stand out */
+}
+
+/* ===== BADGE (label like "Sports Classic") ===== */
+.badge {
+    /* Use variables for theme-aware styling */
+    position: absolute;  /* Remove from normal flow, position it exactly where we want */
+    top: -12px;   /* Position 12px up (overlaps the card edge) */
+    left: 20px;   /* Position 20px from left edge */
+    background: var(--border-color);  /* Use border color for contrast */
+    padding: 5px 12px;  /* Small padding inside the badge */
+    border-radius: 20px;  /* Very round (pill-shaped) */
+    font-size: 12px;  /* Small text */
+    color: var(--text-primary);  /* Use theme text color */
+}
+
+/* Special blue badge (for "most popular") */
+.badge.blue {
+    /* Use accent color for special badges */
+    background: var(--accent-color);  /* Use the theme's accent color */
+}
+
+/* ===== PRICE DISPLAY ===== */
+.price {
+    font-size: 28px;  /* Large, eye-catching */
+    margin: 10px 0;   /* Space above and below */
+}
+
+/* ===== PRODUCT DETAILS LIST ===== */
+ul {
+    padding-left: 20px;  /* Indent the list items */
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    display: block;  /* Make button take full width */
+    text-align: center;  /* Center the text inside */
+    padding: 12px;  /* Comfortable padding for clicking */
+    border: 1px solid var(--accent-color);  /* Blue outline */
+    color: var(--accent-color);  /* Blue text */
+    border-radius: 8px;  /* Rounded corners */
+    text-decoration: none;  /* Remove underline from links */
+    margin-top: 15px;  /* Space above button */
+    cursor: pointer;  /* Show hand cursor on hover */
+    
+    /* transition: smooth animation when properties change */
+    transition: transform .12s ease, box-shadow .12s ease, filter .12s ease, background-color .12s ease;
+}
+
+/* ===== PRIMARY BUTTON (e.g., "Purchase now!") ===== */
+.btn.primary {
+    /* Use accent color for primary buttons */
+    background: var(--accent-color);  /* Filled with brand blue */
+    color: #fff;  /* White text stands out on blue */
+}
+
+/* ===== BUTTON HOVER EFFECTS ===== */
+/* When user hovers mouse over a button, it "lights up" */
+
+.btn:hover {
+    /* Move button up 3 pixels to indicate it's clickable */
+    transform: translateY(-3px);
+    
+    /* Add a blue glow underneath */
+    box-shadow: 0 10px 24px rgba(28,105,212,0.12);
+    
+    /* Brighten the button slightly (increase brightness by 6%) */
+    filter: brightness(1.06);
+    
+    /* Add subtle background color for "Learn more" buttons */
+    background-color: rgba(28,105,212,0.08);
+}
+
+/* ===== PRIMARY BUTTON HOVER ===== */
+/* Make "Purchase now!" buttons brighter when hovered */
+.btn.primary:hover {
+    filter: brightness(1.08);  /* Brighten by 8% (more than regular buttons) */
+}
+
+/* CONTENT */
+.content {
+    max-width: 800px;
+    margin: auto;
+    padding: 40px;
+    text-align: center;
+}
+
+.content img {
+    width: 100%;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+/* TIMELINE */
+.timeline {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.year {
+    margin: 20px 0;
+    opacity: .85;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 20px;
+    opacity: .5;
+}
+
+.back {
+    display: block;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #1c69d4;
+    text-decoration: none;
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart - BMW M Shop</title>
+    <link rel="stylesheet" href="pood.css">
+    <style>
+        /* Cart page specific styles */
+        .cart-page {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        #cart-items {
+            margin: 30px 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1a1a1a;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            gap: 20px;
+        }
+
+        .item-info h3 {
+            margin: 0;
+            color: #1c69d4;
+        }
+
+        .item-info p {
+            margin: 5px 0 0 0;
+            color: #aaa;
+        }
+
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .item-quantity button {
+            background: #1c69d4;
+            border: none;
+            color: black;
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .item-quantity input {
+            width: 50px;
+            padding: 5px;
+            text-align: center;
+            background: #333;
+            color: white;
+            border: 1px solid #1c69d4;
+            border-radius: 4px;
+        }
+
+        .item-total {
+            font-weight: bold;
+            color: #1c69d4;
+            min-width: 100px;
+        }
+
+        .btn-remove {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-remove:hover {
+            background: #ff0000;
+        }
+
+        #cart-total {
+            text-align: right;
+            margin-top: 30px;
+            padding: 20px;
+            background: #1c69d4;
+            color: black;
+            border-radius: 8px;
+        }
+
+        #cart-total h2 {
+            margin: 0 0 15px 0;
+        }
+
+        .btn-checkout {
+            background: #1c69d4;
+            color: black;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .btn-checkout:hover {
+            background: #0041b2;
+        }
+
+        .btn-continue {
+            background: #444;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn-continue:hover {
+            background: #666;
+        }
+    </style>
+</head>
+<body>
+
+<header class="hero">
+    <h1>Cart</h1>
+    <p>Your chosen BMW M cars:</p>
+</header>
+
+<div class="cart-page">
+    <!-- Cart items will be displayed here by JavaScript -->
+    <div id="cart-items"></div>
+    
+    <!-- Total price and checkout button will be here -->
+    <div id="cart-total"></div>
+</div>
+
+<!-- Import the cart.js file to use all the shopping cart functions -->
+<script src="cart.js"></script>
+
+</body>
+</html>
